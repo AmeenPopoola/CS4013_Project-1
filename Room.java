@@ -11,6 +11,22 @@ public class Room {
         this.maxOccupancy= maxOccupancy;
         this.rates = roomPrice;
     }
+    
+      public void setMaxOccupancy(int maxOccupancy) {
+        this.maxOccupancy = maxOccupancy;
+    }
+
+    public void setMinOccupancy(int minOccupancy) {
+        this.minOccupancy = minOccupancy;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
+
+    public void setRates(double[] rates) {
+        this.rates = rates;
+    }
 
     public String getRoomType(){
         return roomType;
