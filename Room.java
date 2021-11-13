@@ -5,11 +5,11 @@ public class Room {
     private int maxOccupancy;
     private double[] rates;
 
-    public Room(String roomType , int minOccupancy , int maxOccupancy , double[] roomPrice){
+    public Room(String roomType , int minOccupancy , int maxOccupancy , double[] rates){
         this.roomType = roomType;
         this.minOccupancy= minOccupancy;
         this.maxOccupancy= maxOccupancy;
-        this.rates = roomPrice;
+        this.rates = rates;
     }
     
       public void setMaxOccupancy(int maxOccupancy) {
