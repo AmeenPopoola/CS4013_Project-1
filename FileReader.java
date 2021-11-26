@@ -7,8 +7,10 @@ public class FileReader {
     private String [][] Reservations;
     private String [][] UserPassword;
 
+
 public String [][] readHotels() throws FileNotFoundException{
-    java.io.File file = new java.io.File(".../l4Hotels.csv");
+
+    java.io.File file = new java.io.File("l4Hotels.csv");
     Scanner input = new Scanner(file);
 
     String line;
@@ -25,7 +27,8 @@ public String [][] readHotels() throws FileNotFoundException{
 }
 
 public String [][] readRes() throws FileNotFoundException{
-    java.io.File file = new java.io.File(".../Reservations.csv");
+
+    java.io.File file = new java.io.File("Reservations.csv");
     Scanner count = new Scanner(file);
     Scanner input = new Scanner(file);
 
@@ -41,6 +44,9 @@ public String [][] readRes() throws FileNotFoundException{
     count.close();
 
     this.Reservations =new String [z][9];
+    
+    //Make z=0 again to iterate threw the columns
+    z=0;
 
     while(input.hasNext()){
         line = input.nextLine();
@@ -55,7 +61,7 @@ public String [][] readRes() throws FileNotFoundException{
 }
 
 public String[][] readUserPasswordFile() throws FileNotFoundException{
-    java.io.File File = new java.io.File("../UsernamesAndPasswords.csv");
+    java.io.File File = new java.io.File("UsernamesAndPasswords.csv");
     Scanner input = new Scanner(File);
     Scanner count = new Scanner(File);
     
@@ -70,7 +76,8 @@ public String[][] readUserPasswordFile() throws FileNotFoundException{
     count.close();
     
     this.UserPassword = new String[z][3];
-    
+    z=0;
+
     while(input.hasNext()){
         line = input.nextLine();
         this.UserPassword[z] = line.split(",");
@@ -85,3 +92,4 @@ public String[][] readUserPasswordFile() throws FileNotFoundException{
 
 
 }
+
