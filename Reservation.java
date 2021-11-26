@@ -1,50 +1,112 @@
 /**Public Class for Reservation */
 public class Reservation {
+    private int resNumber;
+    private String name;
+    private Reservation standard;
+    private Reservation advanced;
     private String description;
     private ReservationDate day;
     private ReservationTime from;
     private ReservationTime to;
+    private int numberOfRooms;
+    private Reservation roomType;
+    private int numberOfPeople;
+    private double totalCost;
 
     /**Reservation Constructor method */
-    public Reservation(String description, ReservationDate day, ReservationTime from, ReservationTime to){
+
+    public Reservation(int resNumber, String name, String description, ReservationDate day, ReservationTime from, ReservationTime to, int numberOfRooms, int numberOfPeople, double totalCost) {
+        this.resNumber = resNumber;
+        this.name = name;
         this.description = description;
         this.day = day;
         this.from = from;
         this.to = to;
-
+        this.numberOfRooms = numberOfRooms;
+        this.numberOfPeople = numberOfPeople;
+        this.totalCost = totalCost;
     }
-    /** get the current Description */
+
+    public int getResNumber() {
+        return this.resNumber;
+    }
+
+    public void setResNumber(int resNumber) {
+        this.resNumber = resNumber;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getDescription() {
         return this.description;
     }
-    /** set a new description */
+
     public void setDescription(String description) {
         this.description = description;
     }
-    /** get the current day */
+
     public ReservationDate getDay() {
         return this.day;
     }
-    /** set a new day */
+
     public void setDay(ReservationDate day) {
         this.day = day;
     }
-    /** get the start time */
+
     public ReservationTime getFrom() {
         return this.from;
     }
-    /** Set a new start time */
+
     public void setFrom(ReservationTime from) {
         this.from = from;
     }
-    /** Get the end time */
+
     public ReservationTime getTo() {
         return this.to;
     }
-    /** Set a new end time */
+
     public void setTo(ReservationTime to) {
         this.to = to;
     }
 
+    public int getNumberOfRooms() {
+        return this.numberOfRooms;
+    }
+
+    public void setNumberOfRooms(int numberOfRooms) {
+        this.numberOfRooms = numberOfRooms;
+    }
+
+    public Reservation getRoomType() {
+        return this.roomType;
+    }
+
+    public void setRoomType(Reservation roomType) {
+        this.roomType = roomType;
+    }
+
+    public int getNumberOfPeople() {
+        return this.numberOfPeople;
+    }
+
+    public void setNumberOfPeople(int numberOfPeople) {
+        this.numberOfPeople = numberOfPeople;
+    }
+
+    public double getTotalCost() {
+        return this.totalCost;
+    }
+
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
+    }
+}    
+
     
-}
+
