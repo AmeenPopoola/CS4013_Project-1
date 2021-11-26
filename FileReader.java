@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class FileReader {
     private String [][] info;
     private String [][] Reservations;
+    private String [][] UserPassword;
 
 public String [][] readHotels() throws FileNotFoundException{
     java.io.File file = new java.io.File(".../l4Hotels.csv");
@@ -52,5 +53,35 @@ public String [][] readRes() throws FileNotFoundException{
 
 
 }
+
+public String[][] readUserPasswordFile() throws FileNotFoundException{
+    java.io.File File = new java.io.File("../UsernamesAndPasswords.csv");
+    Scanner input = new Scanner(File);
+    Scanner count = new Scanner(File);
+    
+    String line;
+    String c;
+    int z = 0;
+    
+    while(count.hasNext()){
+        c = count.nextLine();
+        z++;
+    }
+    count.close();
+    
+    this.UserPassword = new String[z][3];
+    
+    while(input.hasNext()){
+        line = input.nextLine();
+        this.UserPassword[z] = line.split(",");
+        z++;
+    }
+    input.close();
+    return UserPassword;
+
+    
+    
+}
+
 
 }
