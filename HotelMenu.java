@@ -1,3 +1,4 @@
+import java.util.Calendar;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
@@ -30,7 +31,7 @@ public class HotelMenu
         while (more){
             if (isAuth) {
                 if (isAdmin) {
-                    System.out.println("R)emove rooms A)dd rooms C)ancel a booking");
+                    System.out.println("R)emove rooms A)dd rooms C)ancel a booking S)ign out");
                 }else{
                     System.out.println("C)ancel a booking N)ew booking S)ign out");
                 }
@@ -54,8 +55,9 @@ public class HotelMenu
             }else if(command.equals("Q")){
                 more = false;
             }else if (isAdmin && isAuth){
-                // Only R, A, C are valid
-                System.out.println("Only R, A, C are valid");
+                isAuth = adminOptions(isAuth, command);
+
+
             }else if (!isAdmin && isAuth){
                 isAuth = userOptions(isAuth, command);
             }else{
@@ -108,6 +110,22 @@ public class HotelMenu
     }
 }
 
+    private boolean adminOptions(boolean isAuth, String command) {
+        if (command.equals("R")){
+            //Remove room
+        }else if(command.equals("A")){
+            //Add room
+        }else if (command.equals("C")){
+            //cancel booking
+        }else if (command.equals("S")){
+            isAuth = false;
+        }else {
+            // Only R, A, C, S are valid
+            System.out.println("Invalid option " + command + ". Only R, A, C, S are valid");
+        }
+        return isAuth;
+    }
+
     private boolean userOptions(boolean isAuth, String command) {
         if (command.equals("N")){
            /** new booking
@@ -125,7 +143,14 @@ public class HotelMenu
             int day = Integer.parseInt(app.nextToken());
             int month = Integer.parseInt(app.nextToken());
             int year = Integer.parseInt(app.nextToken());
-            System.out.println(month);
+            ReservationDate reseverationStart = new ReservationDate(day,month,year);
+            System.out.println("Please enter your check out date in the form DD/MM/YYYY");
+            String checkOut = in.nextLine();
+            StringTokenizer app2 = new StringTokenizer(checkOut, "/");
+            int dayLeave = Integer.parseInt(app2.nextToken());
+            int monthLeave = Integer.parseInt(app2.nextToken());
+            int yearLeave = Integer.parseInt(app2.nextToken());
+            ReservationDate reservationEnd = new ReservationDate(dayLeave, monthLeave, yearLeave);
 
 
         }else if (command.equals("C")){
@@ -134,7 +159,7 @@ public class HotelMenu
             isAuth = false;
         }else {
             // Only C N S are valid
-            System.out.println("Invalid option " + command + ".  Please pick a valid choice");
+            System.out.println("Invalid option " + command + ".  Only C, N, S are valid options");
         }
         return isAuth;
     }
