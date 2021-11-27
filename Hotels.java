@@ -2,6 +2,7 @@ public class Hotels {
     private String rooms_available;
     private int cost;
     private int length_of_stay;
+    private String choice;
     
     
     public Hotels() {
@@ -29,5 +30,24 @@ public class Hotels {
         public int getlength_of_stay() {
         return(length_of_stay);
     }
+    public ArrayList<Room> getArray(String choice){
+		ArrayList<Room> room;
+		room = getThreeStar();
+		if(choice.equals("3")){
+			room = getThreeStar();
+		}else if(choice.equals("4")){
+			room = getFourStar();
+		}else if(choice.equals("5")){
+			room = getFiveStar();
+		}
+		return room;
+    }
+    public String getChoice() {
+		return choice;
+	}
+
+	public void setChoice(String choice) {
+		this.choice = choice;
+	}
 
 }
