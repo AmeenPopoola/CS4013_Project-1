@@ -4,12 +4,16 @@ public class Room {
     private int minOccupancy;
     private int maxOccupancy;
     private double[] rates;
+    private ArrayList<Reservation> booked = new ArrayList<Reservation>();
 
     public Room(String roomType , int minOccupancy , int maxOccupancy , double[] rates){
         this.roomType = roomType;
         this.minOccupancy= minOccupancy;
         this.maxOccupancy= maxOccupancy;
         this.rates = rates;
+    }
+    public ArrayList<Reservation> getBooked(){
+        return booked;
     }
     
       public void setMaxOccupancy(int maxOccupancy) {
