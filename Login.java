@@ -43,12 +43,12 @@ public class Login {
             /**
              * Creating new array that the data from the file gets added into.
              */
-            String [] [] userAndPass = new String[z+1][3];
-            int i = 0;
-            while(input.hasNext() &&  i <z ){
+            String [] [] userAndPass = new String[z][3];
+            z = 0;
+            while(input.hasNext()){
                 line = input.nextLine();
-                userAndPass[i] = line.split(",");
-                i++;
+                userAndPass[z] = line.split(",");
+                z++;
             }
             input.close();
 
