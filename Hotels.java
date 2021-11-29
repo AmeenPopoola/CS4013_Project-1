@@ -1,12 +1,10 @@
-
 import java.util.ArrayList;
+
 public class Hotels {
     private String rooms_available;
     private int cost;
     private int length_of_stay;
     private String choice;
-    private int Hotel_rating;
-    private ArrayList<Hotels> stars;
     
     
     public Hotels() {
@@ -34,11 +32,7 @@ public class Hotels {
         public int getlength_of_stay() {
         return(length_of_stay);
     }
-    // method to add hotels if L4 purchases more
-    public void addHotel(Hotels star) {
-        stars.add(star);
-    }
-        public ArrayList<Room> getArray(String choice){
+    public ArrayList<Room> getArray(String choice){
 		ArrayList<Room> room;
 		room = getThreeStar();
 		if(choice.equals("3")){
@@ -57,5 +51,18 @@ public class Hotels {
 	public void setChoice(String choice) {
 		this.choice = choice;
 	}
+/*
+Method to check occupancy of a room
+ */
+    public int getMaxOccupants(String roomType){
+        int max = 0;
+        for(int i = 0; i < getArray(this.choice).size(); i++){
+            if((roomType.equals(getArray(this.choice).get(i).getRoomType())) == true){
+                max = getArray(this.choice).get(i).getMaxOccupancy();
+                return max;
+            }
+        }
+        return max;
+    }
 
-}
+    }
