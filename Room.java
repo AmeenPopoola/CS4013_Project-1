@@ -9,6 +9,7 @@ public class Room {
     private int maxOccupancy;
     private double[] rates;
     private ArrayList<Reservation> booked;
+    private ArrayList<Room> function;
 
     public Room(String roomType , int minOccupancy , int maxOccupancy , double[] rates , ArrayList<Reservation> booked ){
         this.roomType = roomType;
@@ -20,6 +21,16 @@ public class Room {
 
     public ArrayList<Reservation> getBooked(){
         return booked;
+    }
+    
+    // function to add rooms 
+    public void addRoom(Room add) {
+        function.add(add);
+    }
+    
+    //fuction to remove rooms
+        public void removeRoom(Room add) {
+        function.remove(add);
     }
 
     public void setMaxOccupancy(int maxOccupancy) {
@@ -86,8 +97,5 @@ public class Room {
         }
         return false;
     }
-                            
-                    
-                    }
-                    
+}
                 
