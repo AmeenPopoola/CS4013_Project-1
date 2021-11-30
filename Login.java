@@ -6,28 +6,45 @@ public class Login {
     private String password;
     private Boolean isAdmin = false;
 
+    /**
+     * method that updates the private data fields in the class with the inputted data fields
+     * @param username
+     * @param password
+     */
     public Login(String username, String password){
         this.username = username;
         this.password = password;
     }
 
-    // Return the role of the user if logged in.
+
+    /**
+     *  determines if the user can get admin privileges or not
+     * @return the role of the user if logged in.
+     */
     public Boolean getIsAdmin () {
         return isAdmin;
     }
 
-    // Return the username of the user that logged in.
+
+
+    /**
+     * method that gets the username of the current user
+     * @return the username of the user that logged in.
+     */
     public String getUsername () {
         return username;
     }
 
+    /**
+     * method that determines if the user has entered correct information to log into the system
+     * @return isAuth or false 
+     */
     public boolean getAccess(/*String user, String pass*/){
         try {
 
             /**
              * Checks if both the username and password are equal, and if they are
              * checks what kind of role the user is allowed to have in the system.
-             * Does this using the readUserPasswordFile method from the fileReader class
              */
 
             FileReader fr = new FileReader();
