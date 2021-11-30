@@ -244,6 +244,9 @@ public class HotelMenu
                 c++;
             }
             String input = in.nextLine();
+           if (input.equals("")) {
+                return null;
+            }
             int n = input.toUpperCase().charAt(0) - 'A';
             if (0 <= n && n < choices.length)
                 return choices[n];
