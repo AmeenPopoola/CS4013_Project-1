@@ -23,43 +23,18 @@ public class Login {
 
     public boolean getAccess(/*String user, String pass*/){
         try {
-            /**Reading the file and adding the password and username to an array
-             * along with the access that the person is given (admin or customer)
-             **/
-            
-            java.io.File File = new java.io.File("src/main/resources/UsernameAndPasswords.csv");
-            Scanner input = new Scanner(File);
-            Scanner count = new Scanner(File);
-
-            String line;
-            String c;
-            int z = 0;
-
-            while(count.hasNext()){
-                c = count.nextLine();
-                z++;
-            }
-            count.close();
-            /**
-             * Creating new array that the data from the file gets added into.
-             */
-            String [] [] userAndPass = new String[z][3];
-            z = 0;
-            while(input.hasNext()){
-                line = input.nextLine();
-                userAndPass[z] = line.split(",");
-                z++;
-            }
-            input.close();
 
             /**
              * Checks if both the username and password are equal, and if they are
              * checks what kind of role the user is allowed to have in the system.
+             * Does this using the readUserPasswordFile method from the fileReader class
              */
 
+            FileReader fr = new FileReader();
+            String [] [] userAndPass = fr.readUserPasswordFile();
 
             boolean isAuth = false;
-            for (int j =1;j< userAndPass.length-1;j++) {
+            for (int j =1;j< userAndPass.length;j++) {
                 String checkUserEqual = this.username.toLowerCase(Locale.ROOT);
                 String authCheckUser = userAndPass[j][0].toString().toLowerCase(Locale.ROOT);
                 String authCheckPassword = userAndPass[j][1].toString();
