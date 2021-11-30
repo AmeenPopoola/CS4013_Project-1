@@ -149,7 +149,7 @@ public class ReservationCalendar {
      * @param roomType
      * @param cost
      * @param reservationType
-     * @return
+     * @return the current reservation number
      */
     public String makeBooking(String name, ReservationDate checkIn,
                                  ReservationDate checkOut,
