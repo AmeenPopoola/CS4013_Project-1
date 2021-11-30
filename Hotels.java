@@ -25,7 +25,7 @@ public class Hotels {
     }
     /**
      * Method that gets what rooms are available too book
-     * Returns rooms that are available
+     * @return rooms that are available
      */
     public Integer getRooms_available() {
         return (rooms_available);
@@ -49,7 +49,7 @@ public class Hotels {
     }
      
      /** method to format the output of data about the hotels
-     * returns the name of the hotel and the type of room, the rate of the room and the purchase type
+     * @return the name of the hotel and the type of room, the rate of the room and the purchase type
      */
     public String format(Double rate, Boolean isAdvancePurchase) {
         return name + ", " + roomType.format(rate, isAdvancePurchase);
@@ -58,7 +58,7 @@ public class Hotels {
     @Override
     /**
      * method to format the output of data about the hotels
-     * returns the name of the hotel and the type of room
+     * @return the name of the hotel and the type of room
      */
     public String toString() {
         return name + ", " + roomType;
