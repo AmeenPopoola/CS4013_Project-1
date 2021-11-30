@@ -24,7 +24,9 @@ public class HotelMenu
     }
 
     /**
-     Runs the system.
+     * Used to run the system
+     * Displays multiple options for the user to choose from
+     * decides what authority the user can have
      */
     public void run() {
         boolean more = true;
@@ -35,7 +37,8 @@ public class HotelMenu
         while (more){
             if (isAuth) {
                 if (isAdmin) {
-                    System.out.println("R)emove rooms A)dd rooms C)ancel a booking S)ign out");
+                    //System.out.println("R)emove rooms A)dd rooms C)ancel a booking S)ign out");
+                    System.out.println("C)ancel a booking S)ign out");
                 }else{
                     System.out.println("C)ancel a booking N)ew booking S)ign out");
                 }
@@ -71,8 +74,9 @@ public class HotelMenu
                 }else {
                     System.out.println("No reservation available to cancel.");
                 }
-            }else if (isAdmin && isAuth){
-                adminOptions(currentLoggedInUser, command);
+//              Add and Remove rooms
+//            }else if (isAdmin && isAuth){
+//                adminOptions(currentLoggedInUser, command);
             }else if (!isAdmin && isAuth){
                 userOptions(currentLoggedInUser, command);
             }else{
@@ -81,6 +85,15 @@ public class HotelMenu
         }
     }
 
+
+
+    /**
+     *   Admin options to add and remove rooms.
+     *   Would use the same code to upload a newer hotels csv file to the system
+     *   Not currently in use due to change in specification
+     * @param currentLoggedInUser
+     * @param command
+     */
     private void adminOptions(String currentLoggedInUser, String command) {
         if (command.equals("R") || command.equals("A")){
             //Remove or Add room(s).
@@ -89,7 +102,6 @@ public class HotelMenu
             updateRooms[1] = "No";
 
             System.out.println("Do you wish to update you hotel and rooms with your latest CSV file?");
-            //TODO = enter a folder and file to use by filereader to update hotels.
             String update = (String) getChoice(updateRooms);
             if (update == "Yes") {
                 calendar.updateRooms();
@@ -100,6 +112,13 @@ public class HotelMenu
         }
     }
 
+
+
+    /**
+     *  User options to make a booking
+     * @param currentLoggedInUser
+     * @param command
+     */
     private void userOptions(String currentLoggedInUser, String command) {
 
         if (command.equals("N")){
@@ -122,27 +141,32 @@ public class HotelMenu
 
                     System.out.println("Thank you. Checking availability......");
 
-                    // Get the availability of rooms based on the entered details.
+
+                    // Get the availability of rooms based on the entered dates, rooms and guests.
+                    // This checks if the hotel has availability, the number of rooms and guest are valid.
                     ArrayList<String> availability = calendar.checkAvailability (checkInDate, checkOutDate,
                             Integer.valueOf(numberOfRooms), Integer.valueOf(numberOfGuestPerRoom));
 
                     if (availability != null && availability.size() > 0) {
-                        // There is availability to show to the user.
+
+                        // There is availability to show to the user. Get their choice.
                         String res = (String) getChoice(availability.toArray(new Object[availability.size()]));
 
                         if (res != null) {
                             // A room type selection was made. That hotel name, room type and cost must be extracted.
                             // Sample room info presented:
-                            //"5-star, Deluxe Double, 100 per night"
+                            //"5-star, Deluxe Double, 100 Total cost in Euros for stay, AP - Advance purchase discount"
                             StringTokenizer app = new StringTokenizer(res, ",");
                             String hotel = app.nextToken().trim();
                             String roomType = app.nextToken().trim();
                             String costPerNight[] = app.nextToken().trim().split(" ");
                             Double cost = Double.parseDouble(costPerNight[0]);
+                            String rateInfo[] = app.nextToken().trim().split(" ");
+                            String reservationType = rateInfo[0];
 
                             String bookingReference = calendar.makeBooking(currentLoggedInUser,
                             checkInDate, checkOutDate, Integer.valueOf(numberOfRooms),
-                            Integer.valueOf(numberOfGuestPerRoom), hotel, roomType, cost);
+                            Integer.valueOf(numberOfGuestPerRoom), hotel, roomType, cost, reservationType);
 
                             if (bookingReference.trim().length() > 0) {
                                 System.out.println("Your reservation was successful. Reservation number: " + bookingReference);
@@ -164,7 +188,13 @@ public class HotelMenu
         }
     }
 
-    // Common function to split a date into day month year and return a reservation object.
+
+
+    /**
+     * Common function to split a date into day month year and return a reservation object.
+     * @param dateToParse
+     * @return a new ReservationDate object
+     */
     private ReservationDate parseDates(String dateToParse) {
         StringTokenizer app = new StringTokenizer(dateToParse, "/");
         int day = Integer.parseInt(app.nextToken());
@@ -173,7 +203,13 @@ public class HotelMenu
         return new ReservationDate(day, month, year);
     }
 
-    // Validate if an entered date is valid.
+
+
+    /**
+     * Validate if an entered date is valid.
+     * @param dateToCheck
+     * @return true or false depending on if the date is valid
+     */
     private Boolean isDateValid(String dateToCheck) {
         DateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         try {
@@ -184,10 +220,18 @@ public class HotelMenu
         return true;
     }
 
-    // Show choices to the user. Used to show
-    // - available rooms
-    // - reservations to cancel
-    // - if to update their hotel and room details.
+
+
+    /**
+     *    Show choices to the user. Used to show
+     *      - available rooms
+     *      - reservations to cancel
+     *      - if to update their hotel and room details (admin - add/remove rooms)
+     *
+     *
+     * @param choices
+     * @return choices[n]
+     */
     private Object getChoice(Object[] choices)
     {
         if (choices.length == 0) return null;
@@ -205,5 +249,4 @@ public class HotelMenu
                 return choices[n];
         }
     }
-
 }
