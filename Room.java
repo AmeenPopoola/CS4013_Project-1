@@ -64,38 +64,5 @@ public class Room {
     public double[] getRates() {
         return rates;
     }
-
-    /**
-     * Checks if room is available
-     */
-
-    public boolean checkAvailablity(Reservation res , Hotels hot , GregorianCalendar dateFrom , GregorianCalendar dateTo){
-        GregorianCalendar from = null ;
-        GregorianCalendar to = null;
-        int pos = 0;
-
-        for(int i = 0; i < hot.getArray(hot.getChoice()).size(); i++){
-            if(roomType.equals(hot.getArray(hot.getChoice()).get(i).getRoomType())){
-                if (hot.getArray(hot.getChoice()).get(i).getBooked().size() > 0) {
-                    for (int j = 0; j < hot.getArray(hot.getChoice()).get(i).getBooked.size(); j++) {
-                        from = hot.getArray(hot.getChoice()).get(i).getBooked(j).getDateFrom();
-                        to = hot.getArray(hot.getChoice()).get(i).getBooked(j).getDateTo();
-
-                        if (dateFrom.before(from) && dateTo.before(to) || dateFrom.after(from) && dateTo.after(to)) {
-                            pos = i;
-                            hot.getArray(hot.getChoice()).get(pos).getBooked().add(res);
-                            return true;
-                        } else {
-                            break;
-                        }
-                    }
-                } else {
-                    hot.getArray(hot.getChoice()).get(i).getBooked().add(res);
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
 }
                 
